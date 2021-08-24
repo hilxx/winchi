@@ -1,0 +1,18 @@
+{
+  "name": "winchi",
+  "version": "0.0.1",
+  "description": "Function library",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "yarn build"
+  },
+  "author": "hilx",
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.27.1"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.27.44"
+  }
+}

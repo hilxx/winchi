@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNEXT",
+    "module": "ESNext",
+    "strict": true,
+    "noImplicitAny": false,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "moduleResolution": "Node",
+    "declaration": true,
+  }
+}
