@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "ESNext",
+    "module": "CommonJS",
     "strict": true,
     "noImplicitAny": false,
-    "outDir": "./build",
+    "outDir": "./lib",
     "rootDir": "./src",
-    "moduleResolution": "Node",
     "declaration": true,
+    "moduleResolution": "node",
   }
 }

@@ -7,33 +7,38 @@ export interface AsyncComposeReturn<D = any> {
 const LOCKET = Symbol('locking')
 
 export const alt = (f1: AF, f2: AF) => (val?: any) => f1(val) || f2(val)
+
 export const and = (f1: AF, f2: AF) => (val?: any) => f1(val) && f2(val)
+
 export const sep = (...fns: AF[]) => v => fns.forEach(fn => fn(v))
-export const fork = (join: AF, f1: AF, f2: AF) =>
- v => join(f1(v), f2(v))
+
+export const fork = (join: AF, f1: AF, f2: AF) => v => join(f1(v), f2(v))
 
 export const taps: AF = (...fns: AF[]) => (val: any) => {
  fns.forEach((fn) => fn(val))
  return val
 }
 
+export const identify = (v): AO => () => v
+
 export const asyncCompose = <D = any>(...fns: AF[]): AsyncComposeReturn<D> => {
+ const errCallbacks: AF[] = []
  const f: AsyncComposeReturn = async (data?) => {
-  let result = data
   try {
+   let result = data
    for (let k = fns.length - 1; k >= 0; k--) {
     result = await fns[k](result)
    }
    return result
   } catch (e) {
-   const d = await catchCb?.(e)
+   const reject = errCallbacks.reduce((promise, cb) => promise.catch(cb), Promise.reject<any>(e))
+   const d = await reject
    return d === undefined ? Promise.reject(d) : d
   }
  }
 
- let catchCb: AF
  f.catch = (cb) => {
-  catchCb = cb
+  errCallbacks.push(cb)
   return f
  }
  return f

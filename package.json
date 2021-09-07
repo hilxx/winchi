@@ -1,17 +1,25 @@
 {
   "name": "winchi",
-  "version": "0.0.1",
+  "version": "0.0.21",
   "description": "Function library",
-  "main": "build/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "yarn build"
+  },
+  "homepage": "https://github.com/hilxx/winchi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hilxx/winchi"
   },
   "author": "hilx",
   "license": "ISC",
   "dependencies": {
     "ramda": "^0.27.1"
   },
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
     "@types/ramda": "^0.27.44"
   }
