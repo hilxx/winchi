@@ -1,4 +1,5 @@
 import * as R from 'ramda'
+import { AF, AO } from './typing'
 
 export const classifyAos = R.curry(
   (prop: AF, arr: AO[]) =>

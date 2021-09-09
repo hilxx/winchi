@@ -1,3 +1,4 @@
+import { AO } from "./typing"
 
 export const isObj = (o): o is AO =>
  typeof o === 'function' || (o !== null && typeof o === 'object')

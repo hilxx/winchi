@@ -7,6 +7,13 @@ import * as isWhat from './isWhat'
 import * as string from './string'
 import * as number from './number'
 
+export * from './func'
+export * from './array'
+export * from './ao'
+export * from './isWhat'
+export * from './string'
+export * from './number'
+
 export default {
  ...func,
  ...ao,
@@ -15,6 +22,3 @@ export default {
  ...number,
  ...isWhat,
 }
-
-
-

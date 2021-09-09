@@ -1,8 +1,13 @@
 import * as R from 'ramda'
 import { isObj } from './isWhat';
+import { AO, GetKey } from './typing';
 
 export const prop = R.curry(
-  (key: Key | AF<[AO], any>, o: AO) => typeof key === 'function' ? key(o) : o[key]
+  (key: GetKey, o: AO) => typeof key === 'function' ? key(o) : o?.[key as any]
+)
+
+export const deepProp = R.curry(
+  (keys: GetKey[], o: AO) => keys.reduce((cur, k) => prop(k, cur), o)
 )
 
 export const rename = R.curry((key, renameKey, obj) => {
@@ -11,9 +16,6 @@ export const rename = R.curry((key, renameKey, obj) => {
   Reflect.deleteProperty(newO, key);
   return newO;
 });
-
-export const getObjProperty = <T extends object>(o: T) => (keys: (string | number | symbol)[]) =>
-  Array.isArray(keys) ? keys.reduce((currentO, key) => currentO[key], o) : o[keys]
 
 // 数字下标转数组
 export const objToArr = (obj: Record<number, any>) =>

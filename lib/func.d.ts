@@ -1,3 +1,4 @@
+import { AF, AO, ReturnParameters } from "./typing";
 export interface AsyncComposeReturn<D = any> {
     (data?: any): Promise<D>;
     catch(cb: AF): AsyncComposeReturn<D>;
