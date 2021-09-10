@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import { AF, AO, ReturnParameters } from "./typing"
 
 export interface AsyncComposeReturn<D = any> {
@@ -65,3 +66,11 @@ export const callLock = <F extends AF>(fn: F) =>
   const isLocket = fn[LOCKET]
   return isLocket ? Promise.reject(`callLock.${fn.name}: 该函数已经在执行了`) : fn(...rest)
  }
+
+/**
+* @param3 type Record
+**/
+export const messageComposeMethod = R.curry(
+ (compose: AF, record: Record<string, any>) => R.mapObjIndexed(
+  (v, k) => record[k] ? compose(v, record[k]) : v
+ ))

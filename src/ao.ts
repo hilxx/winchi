@@ -1,5 +1,4 @@
 import * as R from 'ramda'
-import { isObj } from './isWhat';
 import { AO, GetKey } from './typing';
 
 export const prop = R.curry(
@@ -17,7 +16,9 @@ export const rename = R.curry((key, renameKey, obj) => {
   return newO;
 });
 
-// 数字下标转数组
+/** 
+ * 转换数字下标的Record
+  */
 export const objToArr = (obj: Record<number, any>) =>
   Object.keys(obj)
     .filter((key) => Number.isInteger(+key))
@@ -25,8 +26,3 @@ export const objToArr = (obj: Record<number, any>) =>
       Number.isInteger(+cur) && (result[+cur] = obj[cur])
       return result;
     }, [] as any[])
-
-/** 让数字下标的对象成为数组 {0： 1} => [1] */
-export const deepObjToArr = (obj: Record<number, any>) =>
-  objToArr(obj).map((item) => (isObj(item) ? deepObjToArr(item) : item));
-
