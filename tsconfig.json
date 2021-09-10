@@ -8,5 +8,6 @@
     "rootDir": "./src",
     "declaration": true,
     "moduleResolution": "node",
+    "removeComments": true,
   }
 }

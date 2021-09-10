@@ -1,3 +1,4 @@
+/// <reference types="ts-toolbelt" />
 import { AF, AO, ReturnParameters } from "./typing";
 export interface AsyncComposeReturn<D = any> {
     (data?: any): Promise<D>;
@@ -12,3 +13,7 @@ export declare const identify: (v: any) => AO;
 export declare const asyncCompose: <D = any>(...fns: AF[]) => AsyncComposeReturn<D>;
 export declare const lockWrap: <F extends AF<any[], Promise<any>>>(fn: F) => (...rest: ReturnParameters<F>) => Promise<ReturnType<F> extends any ? ReturnType<F> : Promise<ReturnType<F>>>;
 export declare const callLock: <F extends AF<any[], any>>(fn: F) => (...rest: ReturnParameters<F>) => ReturnType<F>;
+/**
+* @param3 type Record
+**/
+export declare const messageComposeMethod: import("Function/Curry").Curry<(compose: AF, record: Record<string, any>) => (obj: Record<string, unknown>) => Record<string, any>>;

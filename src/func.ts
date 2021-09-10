@@ -67,10 +67,18 @@ export const callLock = <F extends AF>(fn: F) =>
   return isLocket ? Promise.reject(`callLock.${fn.name}: 该函数已经在执行了`) : fn(...rest)
  }
 
-/**
-* @param3 type Record
-**/
 export const messageComposeMethod = R.curry(
- (compose: AF, record: Record<string, any>) => R.mapObjIndexed(
-  (v, k) => record[k] ? compose(v, record[k]) : v
+ (compose: AF, record: Record<string, any>, target: AO) => R.mapObjIndexed(
+  (v, k) => record[k] ? compose(v, record[k]) : v,
+  target
  ))
+
+export const curryLazy = R.compose(
+ R.curry,
+ fn => new Proxy(fn, {
+  get(target, key, receiver) {
+   const v = Reflect.get(target, key, receiver)
+   return key === 'length' ? v + 1 : v
+  }
+ })
+)
