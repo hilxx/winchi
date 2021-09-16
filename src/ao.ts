@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import { AO, GetKey } from './typing';
+import { AO, GetKey } from './index';
 
 export const prop = R.curry(
   (key: GetKey, o: AO) => typeof key === 'function' ? key(o) : o?.[key as any]
