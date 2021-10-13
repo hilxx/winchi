@@ -20,9 +20,6 @@ export * from './string'
 export * from './number'
 
 export const obj = new Proxy<AO>({}, {
- get() {
-  return obj
- },
  set() {
   return false
  }
@@ -38,6 +35,8 @@ export function func(...rest: any[]) {
  return rest
 }
 
+export const key = Symbol('only key')
+
 export default {
  ...funcs,
  ...ao,
@@ -45,6 +44,7 @@ export default {
  ...string,
  ...number,
  ...isWhat,
+ key,
  obj,
  arr,
  func,

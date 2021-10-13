@@ -4,7 +4,7 @@
   "description": "Function library",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf ./lib && tsc",
     "prepublishOnly": "yarn build"
   },
   "homepage": "https://github.com/hilxx/winchi",
